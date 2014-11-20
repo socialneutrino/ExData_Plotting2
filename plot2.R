@@ -6,6 +6,9 @@ SCC <- readRDS("Source_Classification_Code.rds")
 #Subset NEI data frame to just include Baltimore emissions
 dataBaltimore <- NEI[NEI$fips=="24510",]
 
+#Aggregate Baltimore emission data, summing all emissions by year
+totalBaltimore <- aggregate(Emissions ~ year, data = dataBaltimore, sum)
+
 #Create barplot total emissions against year and save to png file
 png(file = "plot2.png", width = 480, height = 480)
 barplot(totalBaltimore$Emissions, names=totalBaltimore$year)
